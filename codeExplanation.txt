@@ -1,0 +1,14 @@
+*걍 테스트용
+selectTable - 결과 보여줌(단순 select)
+jsonTest - 말 그대로 test
+flaskTest - 말 그대로 테스트
+helloWorld - 걍 테스트
+howjsonworks - 테스트용 코드
+insertingTable - 해당 파일 수정해서 분석한 결과를 들어가게 만들 수 있음. (디쟌실 컴에는 수정된 버전 있을거임..)
+
+
+
+*사용 가능
+createDB - 해당 폴더에 database라는 이름을 가진 sqlite 형태의 디비 생성
+myDBtest - flask,select 문 사용해서 사용자의 로컬 서버(주로 127.0.0.1:5000)에 json 띄움
+pythondbtest-int형 인덱스를 매개로 데이터베이스에 데이터 넣는 작업을 수행함. 해당 함수는 urban_sound_classifier.py에서 호출함
