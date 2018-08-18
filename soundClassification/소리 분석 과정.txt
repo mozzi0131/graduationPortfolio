@@ -1,0 +1,7 @@
+1.feature_extraction.py : 만들어 둔 데이터셋을 사용하여 각 폴더마다의 npz파일을 생성함
+2. feature_merge.py : 해당 npz파일들을 합산함
+3. train_test_split.py : 해당 파일을 잘라서 train/test용을 자름
+4. trainingModel.py : 해당 모델을 통해 학습을 수행함 --> model_LSH.ckpt 파일이 생성되어야 함
+
+--> 그 후 LSH_TEST를 통해 분석을 수행할 수 있어야 한다.
+

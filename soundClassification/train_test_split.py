@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.model_selection import GroupShuffleSplit
 
-sound_data = np.load('urban_sound.npz')
+sound_data = np.load('sound_final.npz')
 X_data = sound_data['X']
 y_data = sound_data['y']
 groups = sound_data['groups']
@@ -20,5 +20,5 @@ for train_idx, test_idx in gss.split(X_data, y_data, groups=groups):
     
     print(X_train.shape, X_test.shape)
     
-np.savez('urban_sound_train', X=X_train, y=y_train, groups=groups_train)
-np.savez('urban_sound_test', X=X_test, y=y_test, groups=groups_test)
+np.savez('sound_train', X=X_train, y=y_train, groups=groups_train)
+np.savez('sound_test', X=X_test, y=y_test, groups=groups_test)

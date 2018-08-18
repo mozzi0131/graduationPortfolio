@@ -29,11 +29,13 @@ def extract_feature(file_name):
 
 # 텐서플로우 모델 생성
 n_dim = 193
-n_classes = 10
+n_classes = 4
 n_hidden_units_one = 300
 n_hidden_units_two = 200
 n_hidden_units_three = 100
 sd = 1 / np.sqrt(n_dim)
+
+
 
 X = tf.placeholder(tf.float32,[None,n_dim])
 Y = tf.placeholder(tf.float32,[None,n_classes])
@@ -52,6 +54,7 @@ h_3 = tf.nn.sigmoid(tf.matmul(h_2, W_3) + b_3)
 
 W = tf.Variable(tf.random_normal([n_hidden_units_three, n_classes], mean=0, stddev=sd), name="w")
 b = tf.Variable(tf.random_normal([n_classes], mean = 0, stddev=sd), name="b")
+print("b is"+str(b))
 z = tf.matmul(h_3, W) + b
 y_sigmoid = tf.nn.sigmoid(z)
 y_ = tf.nn.softmax(z)
@@ -59,38 +62,25 @@ y_ = tf.nn.softmax(z)
 init = tf.global_variables_initializer()
 
 # 모델 파라메타 로드
-saver = tf.train.Saver()
+saver = tf.train.Saver(tf.trainable_variables())
 sess = tf.Session()
 sess.run(init)
-saver.restore(sess, 'model_321.ckpt')
+saver.restore(sess, 'Newmodel_LSH.ckpt')
 
 
 def analyzingFile(filename):
+#if __name__ == "__main__":
     mfccs, chroma, mel, contrast,tonnetz = extract_feature(filename)
     x_data = np.hstack([mfccs,chroma,mel,contrast,tonnetz])
     y_hat, sigmoid = sess.run([y_, y_sigmoid], feed_dict={X: x_data.reshape(1,-1)})
     index = np.argmax(y_hat)
 
-        
-    if index == 0:
-        return 0
-    elif index == 1:
+    if index ==0:
+       return 0
+    elif index==1:
         return 1
-    elif index == 2:
+    elif index==2:
         return 2
     elif index == 3:
         return 3
-    elif index == 4:
-        return 4
-    elif index == 5:
-        return 5
-    elif index == 6:
-        return 6
-    elif index == 7:
-        return 7
-    elif index == 8:
-        return 8  
-    elif index == 9:
-        return 9
-
 

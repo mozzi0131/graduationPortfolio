@@ -2,9 +2,9 @@ import glob
 import numpy as np
 
 X = np.empty((0, 193))
-y = np.empty((0, 10))
+y = np.empty((0, 4))
 groups = np.empty((0, 1))
-npz_files = glob.glob('./urban_sound_?.npz')
+npz_files = glob.glob('./sound_?.npz')
 for fn in npz_files:
     print(fn)
     data = np.load(fn)
@@ -18,4 +18,4 @@ print(X.shape, y.shape)
 for r in y:
     if np.sum(r) > 1.5:
         print(r)
-np.savez('urban_sound', X=X, y=y, groups=groups)
+np.savez('sound_final', X=X, y=y, groups=groups)

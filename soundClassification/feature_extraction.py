@@ -15,16 +15,19 @@ def extract_feature(file_name):
 
 def parse_audio_files(filenames):
     rows = len(filenames)
-    features, labels, groups = np.zeros((rows,193)), np.zeros((rows,10)), np.zeros((rows, 1))
+    features, labels, groups = np.zeros((rows,193)), np.zeros((rows,4)), np.zeros((rows, 1))
     i = 0
     for fn in filenames:
         try:
             mfccs, chroma, mel, contrast,tonnetz = extract_feature(fn)
             ext_features = np.hstack([mfccs,chroma,mel,contrast,tonnetz])
-            y_col = int(fn.split('/')[3].split('-')[1])
-            group = int(fn.split('/')[3].split('-')[0])
-        except:
-            print(fn)
+            #print("filename is"+fn)
+            #print(fn.split('/')[1].split('\\')[1].split('-')[1])
+            #print(fn.split('/')[1].split('\\')[1].split('-')[0])
+            y_col = int(fn.split('/')[1].split('\\')[1].split('-')[1])
+            group = int(fn.split('/')[1].split('\\')[1].split('-')[0])
+        except Exception as ex:
+            print(fn,ex)
         else:
             features[i] = ext_features
             labels[i, y_col] = 1
@@ -35,14 +38,15 @@ def parse_audio_files(filenames):
 
 audio_files = []
 for i in range(1,11):
-    audio_files.extend(glob.glob('UrbanSound8K/audio/fold%d/*.wav' % i))
+    audio_files.extend(glob.glob('lsh_soundFOLDER/fold%d/*.wav' % i))
 
 print(len(audio_files))
-for i in range(9):
+for i in range(4):
     files = audio_files[i*1000: (i+1)*1000]
     X, y, groups = parse_audio_files(files)
     for r in y:
         if np.sum(r) > 1.5:
             print('error occured')
             break
-    np.savez('urban_sound_%d' % i, X=X, y=y, groups=groups)
+    np.savez('sound_%d' % i, X=X, y=y, groups=groups)
+

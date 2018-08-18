@@ -1,0 +1,2 @@
+model_checkpoint_path: "Newmodel_LSH.ckpt"
+all_model_checkpoint_paths: "Newmodel_LSH.ckpt"
