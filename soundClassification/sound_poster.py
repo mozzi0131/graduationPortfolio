@@ -1,7 +1,11 @@
-import LSH_TEST
+import urban_sound_classifier2
 import pythondbtest
 
-result = LSH_TEST.analyzingFile('testing_dogbark.wav')
+filename = 'testing_boilingwater.wav'
+
+result = urban_sound_classifier2.analyzingFile(filename)
+
+print(filename)
 
 if result==0:
     print("siren")
