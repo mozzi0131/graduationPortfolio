@@ -10,6 +10,9 @@ THRESHOLD = 500
 CHUNK_SIZE = 1024
 FORMAT = pyaudio.paInt16
 RATE = 44100
+RECORD_SECONDS = 4
+secondRange = int(RATE / CHUNK_SIZE * RECORD_SECONDS)
+
 filename = "demo"
 
 
@@ -78,11 +81,14 @@ def record():
 
     r = array('h')
 
+    count_val = 0;
+
     while 1:
         # little endian, signed short
         snd_data = array('h', stream.read(CHUNK_SIZE))
         if byteorder == 'big':
             snd_data.byteswap()
+        count_val += 0
         r.extend(snd_data)
 
         silent = is_silent(snd_data)
@@ -92,7 +98,13 @@ def record():
         elif not silent and not snd_started:
             snd_started = True
 
+        #너무 길어져서 break 수행하려면 여기서 해야할거같은뎅 
+        if snd_started and count_val >= secondRange :
+            print("because of too long sound")
+            break
+
         if snd_started and num_silent > 30:
+            print("because silent")
             break
 
     sample_width = p.get_sample_size(FORMAT)
