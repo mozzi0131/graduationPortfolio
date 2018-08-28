@@ -13,7 +13,7 @@ RATE = 44100
 RECORD_SECONDS = 4
 secondRange = int(RATE / CHUNK_SIZE * RECORD_SECONDS)
 
-filename = "demo"
+filename = "result.wav"
 
 
 def is_silent(snd_data):
@@ -132,5 +132,7 @@ def record_to_file(path):
 if __name__ == '__main__':
     while True:
         print("please speak a word into the microphone")
-        record_to_file('demo.wav')
+        record_to_file(filename)
+        #소리 분석 진행하고 데이터베이스에 저장하라고 함수호출하기
+        
         print("done - result written to demo.wav")
