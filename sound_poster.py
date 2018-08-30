@@ -1,7 +1,10 @@
 import urban_sound_classifier2
 import pythondbtest
+import insertingClassifiedData
 
-def processingSnd(filename):
+if __name__ == "__main__":
+#def processingSnd(filename):
+    filename = 'testing_boilingwater.wav'
     result = urban_sound_classifier2.analyzingFile(filename)
 
     print(filename)
@@ -15,4 +18,4 @@ def processingSnd(filename):
     elif result == 3:
         print("dog")
 
-    pythondbtest.insertData(result)
+    insertingClassifiedData.insertData(result)
