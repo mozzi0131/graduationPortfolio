@@ -1,8 +1,6 @@
 import sqlite3 as s
 import datetime
 
-data = 1
-
 #if __name__ == "__main__":
 def insertData(data):
     with s.connect(r"database.db") as conn:

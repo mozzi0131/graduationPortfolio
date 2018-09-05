@@ -73,6 +73,7 @@ def record():
     blank sound to make sure VLC et al can play 
     it without getting chopped off.
     """
+    print("record func called")
     p = pyaudio.PyAudio()
     stream = p.open(format=FORMAT, channels=1, rate=RATE,
         input=True, output=True,
@@ -90,7 +91,8 @@ def record():
         snd_data = array('h', stream.read(CHUNK_SIZE))
         if byteorder == 'big':
             snd_data.byteswap()
-        count_val += 0
+        count_val += 1
+        print(count_val)
         r.extend(snd_data)
 
         silent = is_silent(snd_data)
