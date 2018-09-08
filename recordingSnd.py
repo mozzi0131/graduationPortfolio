@@ -13,7 +13,9 @@ CHUNK_SIZE = 1024
 FORMAT = pyaudio.paInt16
 RATE = 44100
 RECORD_SECONDS = 4
+MINIMUM_SECONDS = 2
 secondRange = int(RATE / CHUNK_SIZE * RECORD_SECONDS)
+minimumRange = int(RATE/CHUNK_SIZE * MINIMUM_SECONDS)
 
 filename = "result.wav"
 
@@ -103,11 +105,11 @@ def record():
             snd_started = True
 
         #너무 길어져서 break 수행하려면 여기서 해야할거같은뎅 
-        if snd_started and count_val >= secondRange :
+        if snd_started and count_val >= secondRange:
             print("because of too long sound")
             break
 
-        if snd_started and num_silent > 30:
+        if snd_started and num_silent > 30 and count_val >= minimumRange:
             print("because silent")
             break
 
