@@ -94,7 +94,7 @@ def record():
         if byteorder == 'big':
             snd_data.byteswap()
         count_val += 1
-        print(count_val)
+        #print(count_val)
         r.extend(snd_data)
 
         silent = is_silent(snd_data)
@@ -106,11 +106,11 @@ def record():
 
         #너무 길어져서 break 수행하려면 여기서 해야할거같은뎅 
         if snd_started and count_val >= secondRange:
-            print("because of too long sound")
+            #print("because of too long sound")
             break
 
         if snd_started and num_silent > 30 and count_val >= minimumRange:
-            print("because silent")
+            #print("because silent")
             break
 
     sample_width = p.get_sample_size(FORMAT)
