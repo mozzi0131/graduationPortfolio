@@ -1,9 +1,8 @@
-import urban_sound_classifier2
-import pythondbtest
+import soundClassification
 import insertingClassifiedData
 
-def processingSnd(filename):
-    result = urban_sound_classifier2.analyzingFile(filename)
+def processingSnd(filename,userID):
+    result = soundClassification.analyzingFile(filename)
 
     print(filename)
 
@@ -16,4 +15,4 @@ def processingSnd(filename):
     elif result == 3:
         print("dog")
 
-    insertingClassifiedData.insertData(result)
+    insertingClassifiedData.insertData(result,userID)

@@ -135,10 +135,10 @@ def record_to_file(path):
     wf.writeframes(data)
     wf.close()
 
-if __name__ == '__main__':
+def recording(userID):
     while True:
         print("please speak a word into the microphone")
         record_to_file(filename)
         #소리 분석 진행하고 데이터베이스에 저장하라고 함수호출하기
-        sound_poster.processingSnd(filename)
+        sound_poster.processingSnd(filename,userID)
         print("done - result written to demo.wav")
