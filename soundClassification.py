@@ -60,6 +60,7 @@ saver.restore(sess, 'Newmodel_LSH.ckpt')
 
 def analyzingFile(filename):
 #if __name__ == "__main__":
+    print("analyzingFile")
     mfccs, chroma, mel, contrast,tonnetz = extract_feature(filename)
     x_data = np.hstack([mfccs,chroma,mel,contrast,tonnetz])
     y_hat, sigmoid = sess.run([y_, y_sigmoid], feed_dict={X: x_data.reshape(1,-1)})

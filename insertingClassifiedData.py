@@ -4,6 +4,7 @@ import datetime
 
 #if __name__ == "__main__":
 def insertData(data,userID):
+    print("insertData")
     AWSinsert_sql = "insert into sound_record(recordNum, userID, soundType, recordDate) values (NULL,%s,%s,%s)"
     AWStest_sql = "select * from sound_record order by recordDate"
     

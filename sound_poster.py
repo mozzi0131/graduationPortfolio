@@ -2,6 +2,7 @@ import soundClassification
 import insertingClassifiedData
 
 def processingSnd(filename,userID):
+    print("processingSnd")
     result = soundClassification.analyzingFile(filename)
 
     print(filename)
