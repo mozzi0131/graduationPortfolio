@@ -124,7 +124,7 @@ def record():
     return sample_width, r
 
 def record_to_file(path):
-    "Records from the microphone and outputs the resulting data to 'path'"
+    print("Records from the microphone and outputs the resulting data to 'path'")
     sample_width, data = record()
     data = pack('<' + ('h'*len(data)), *data)
 
@@ -136,9 +136,11 @@ def record_to_file(path):
     wf.close()
 
 def recording(userID):
-    while True:
-        print("please speak a word into the microphone")
-        record_to_file(filename)
-        #소리 분석 진행하고 데이터베이스에 저장하라고 함수호출하기
-        sound_poster.processingSnd(filename,userID)
-        print("done - result written to demo.wav")
+    #while True:
+    print("please speak a word into the microphone")
+    print("passed value userID is "+userID)
+    record_to_file(filename)
+    #소리 분석 진행하고 데이터베이스에 저장하라고 함수호출하기
+    print("file making is over")
+    sound_poster.processingSnd(filename,userID)
+    print("done - result written to demo.wav")
