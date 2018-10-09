@@ -136,7 +136,6 @@ class App(QMainWindow):
 
         if len(row) != 0:
             for i in row :
-                print(i[0])
                 if self.userPW == i[0]:
                     self.idLabel.hide()
                     self.pwLabel.hide()
