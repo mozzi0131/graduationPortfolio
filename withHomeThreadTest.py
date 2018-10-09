@@ -44,8 +44,7 @@ class WorkerThread(QThread):
         self.userID = userID
         self._status = not self._status
         if self._status:
-            self.cond.wakeAll()
-        
+            self.cond.wakeAll() 
 
     @property
     def status(self):
