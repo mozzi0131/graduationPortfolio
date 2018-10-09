@@ -5,7 +5,6 @@ import postPush
 
 def insertData(data,userID):
     AWSinsert_sql = "insert into sound_record(recordNum, userID, soundType, recordDate) values (NULL,%s,%s,%s)"
-    AWStest_sql = "select * from sound_record order by recordDate"
     
     sqliteSelect_sql = "select * from classifiedsound where soundIndex = ? order by time desc limit 1"
     sqliteInsert_sql = "insert into classifiedsound (soundIndex,time) values (?,?)"
@@ -25,10 +24,7 @@ def insertData(data,userID):
             cur.execute(AWSinsert_sql, (userID,data,datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
             awsConn.commit()
 
-            postPush.sendPushAlarm(data,userID)
-
-            cur.execute(AWStest_sql)
-            t_result = cur.fetchall()                
+            postPush.sendPushAlarm(data,userID)     
                     
             cur.close()
             
