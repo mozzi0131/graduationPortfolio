@@ -26,8 +26,6 @@ def sendPushAlarm(data,userID):
 
     result = cur.fetchone()
 
-    print("token is",result[0])
-
     url = 'https://fcm.googleapis.com/fcm/send'
 
     body = {
@@ -44,6 +42,5 @@ def sendPushAlarm(data,userID):
     }
 
     req = requests.post(url, headers=headers, data=json.dumps(body))
-    print("data pushed!!")
 
     cur.close()
