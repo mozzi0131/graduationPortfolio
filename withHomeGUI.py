@@ -28,10 +28,8 @@ class WorkerThread(QThread):
     def run(self):
         while True:
             self.mutex.lock()
-            print("start thread")
 
             if not self._status:
-                print("running??")
                 self.cond.wait(self.mutex)
             recordingSnd.recording(self.userID)
             
@@ -40,7 +38,6 @@ class WorkerThread(QThread):
             self.mutex.unlock()
 
     def toggle_status(self,userID):
-        print("called")
         self.userID = userID
         self._status = not self._status
         if self._status:
@@ -68,7 +65,6 @@ class App(QMainWindow):
     def initUI(self):
         self.userID = ""
         self.userPW = ""
-        print("in initUI, userID is "+self.userID+"and userPW is "+self.userPW)
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
