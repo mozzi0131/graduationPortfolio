@@ -26,24 +26,21 @@ class WorkerThread(QThread):
         self.wait()
 
     def run(self):
-        #print("thread's userid is "+userID)
         while True:
             self.mutex.lock()
             print("start thread")
 
             if not self._status:
-                print("running??")
                 self.cond.wait(self.mutex)
             #print(userID)
             recordingSnd.recording(self.userID)
             print("going to another work")
             
-            self.msleep(100)  # ※주의 QThread에서 제공하는 sleep을 사용
+            self.msleep(100)
 
             self.mutex.unlock()
 
     def toggle_status(self,userID):
-        print("called")
         self.userID = userID
         self._status = not self._status
         if self._status:
