@@ -129,8 +129,7 @@ class App(QMainWindow):
     def on_click(self):
         self.userID = self.idTextbox.text()
         self.userPW = self.pwTextbox.text()
-
-        print("id is",self.userID,"and pw is "+self.userPW)
+        
         awsConn = pymysql.connect(host='ec2-18-222-86-176.us-east-2.compute.amazonaws.com', port=3306,
                      user='mozzi', passwd='testMozzi2!', db='withhome', charset='utf8')
         select_sql = "select userPassword from users_record where userID = %s"
@@ -152,8 +151,6 @@ class App(QMainWindow):
                     localConn = sqlite3.connect('database.db')
                     localConn.execute("CREATE TABLE if not exists classifiedSound (userID VARCHAR(16) DEFAULT " + self.userID +", soundIndex INT, time TIMESTAMP)")
                     localConn.close()
-
-                    #self.th.userID = userID
 
                     self.th.toggle_status(userID = self.userID)
                     
