@@ -1,6 +1,7 @@
 import sqlite3 as s
 import pymysql
 import datetime
+import postPush
 
 #if __name__ == "__main__":
 def insertData(data,userID):
@@ -28,11 +29,16 @@ def insertData(data,userID):
             cur.execute(AWSinsert_sql, (userID,data,datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
             awsConn.commit()
 
+            postPush.sendPushAlarm(data,userID)
+            print("postPush called")
+
             cur.execute(AWStest_sql)
             t_result = cur.fetchall()
 
             for j in t_result:
                 print(j)
+
+                
                     
             cur.close()
 
@@ -85,7 +91,8 @@ def insertData(data,userID):
                     cur = awsConn.cursor()
                     cur.execute(AWSinsert_sql, (userID,data,datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
                     awsConn.commit()
-                
+                    postPush.sendPushAlarm(data,userID)
+                    print("postPush called")
                
                     cur.close()
                 else:
@@ -98,5 +105,9 @@ def insertData(data,userID):
                 cur = awsConn.cursor()
                 cur.execute(AWSinsert_sql, (userID, data,datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
                 awsConn.commit()
+                postPush.sendPushAlarm(data,userID)
+                print("postPush called")
+
+                cur.close()
 
     
